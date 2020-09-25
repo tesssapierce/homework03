@@ -1,4 +1,5 @@
-// Assignment Code
+
+// Variable Assignments
 
 var generateBtn = document.querySelector("#generate");
 var lowercase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
@@ -6,21 +7,11 @@ var uppercase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"
 var numerical = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
 var special = ["!", "@", "#", "$", "%", "^", "&", "*"];
 
-// When use clicks on button, create random password
-// When user clicks, prompt for how long password should be
-//   -- What if the character count is outside of 8-128 : Alert
-// When user clicks, confirm if user wants LC, UC, NO, SP
-//   -- What happens if they don't select anything : Alert
-// Store responses as variables and put into an object
-// Create function that will randomize the arrays
-// Write the password
-//   -- Create two arrays - one that is all possible characters, one that is the specific characters
-//   -- Put password on screen
-
-
-// Functions
+// Function to get the password options: Length and Character Types
 
 function getPasswordOptions(){
+
+  //Length prompt
   var confirmLength = parseInt(prompt("How many characters would you like?"))
   if (confirmLength < 8) {
     alert("Please enter a number between 8-128")
@@ -33,6 +24,7 @@ function getPasswordOptions(){
     return
   }
 
+  //Console result
   console.log(confirmLength)
 
   // Confirm what characters user wants
@@ -88,10 +80,12 @@ function generatePassword(){
       guaranteedChar.push(randomizer(special));
     }
 
+  //Loop to make the password with all possible characters at the given length
   for (var i=0; i < options.confirmLength; i++){
     result.push(randomizer(possibleChar));
   }
 
+  //Loop to replace the first 0-4 indexes with the guaranteed characters to make sure the first four characters represent the guaranteed ones
   for (var i=0; i < guaranteedChar.length; i++){
     result[i] = guaranteedChar[i]
   }
@@ -99,6 +93,8 @@ function generatePassword(){
   console.log(guaranteedChar);
   console.log(possibleChar);
   console.log(result)
+
+  //Makes the array into a string
   return result.join("");
 }
 
